@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SearchBar from './components/searchbar.js';
 import Summoner from './summoner.js';
+// Tier Images and Colors
+import { TIER_EMBLEM_MAP, STATS_COLORS } from './constants/assetmaps';
+import NO_ICON from './res/icons/29.png';
 import './index.scss';
 
-// Tier Images
-import {TIER_EMBLEM_MAP, STATS_COLORS} from './constants/assetmaps';
 
-import NO_ICON from './res/icons/29.png';
-import SearchBar from './components/searchbar.js';
 
 const API_KEY = process.env.REACT_APP_LOL_API_KEY;
 const API = 'https://na1.api.riotgames.com';
@@ -46,7 +46,7 @@ class App extends React.Component{
 
             this.setState ({
                 summoner: responseToJson.name,
-                icon: `http://ddragon.leagueoflegends.com/cdn/9.15.1/img/profileicon/${responseToJson.profileIconId}.png`,
+                icon: `http://ddragon.leagueoflegends.com/cdn/9.21.1/img/profileicon/${responseToJson.profileIconId}.png`,
                 level: responseToJson.summonerLevel,
                 id: responseToJson.id,
             });

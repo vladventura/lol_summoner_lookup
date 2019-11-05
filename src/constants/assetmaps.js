@@ -1,15 +1,15 @@
-import IRON from './res/emblems/IRON.png';
-import BRONZE from './res/emblems/BRONZE.png';
-import SILVER from './res/emblems/SILVER.png';
-import GOLD from './res/emblems/GOLD.png';
-import PLATINUM from './res/emblems/PLATINUM.png';
-import DIAMOND from './res/emblems/DIAMOND.png';
-import MASTER from './res/emblems/MASTER.png';
-import GRANDMASTER from './res/emblems/GRANDMASTER.png';
-import CHALLENGER from './res/emblems/CHALLENGER.png';
-import FETCHING from './res/emblems/FETCHING.png';
+import IRON from '../res/emblems/IRON.png';
+import BRONZE from '../res/emblems/BRONZE.png';
+import SILVER from '../res/emblems/SILVER.png';
+import GOLD from '../res/emblems/GOLD.png';
+import PLATINUM from '../res/emblems/PLATINUM.png';
+import DIAMOND from '../res/emblems/DIAMOND.png';
+import MASTER from '../res/emblems/MASTER.png';
+import GRANDMASTER from '../res/emblems/GRANDMASTER.png';
+import CHALLENGER from '../res/emblems/CHALLENGER.png';
+import FETCHING from '../res/emblems/FETCHING.png';
 
-const TIER_EMBLEM_MAP = {
+export const TIER_EMBLEM_MAP = {
     IRON: IRON,
     BRONZE: BRONZE,
     SILVER: SILVER,
@@ -22,7 +22,7 @@ const TIER_EMBLEM_MAP = {
     FETCHING: FETCHING
 };
 
-const STATS_COLORS = {
+export const STATS_COLORS = {
     BRONZE: '#8F5335',
     IRON: '#6D6260',
     SILVER: '#76929C',
@@ -33,6 +33,3 @@ const STATS_COLORS = {
     GRANDMASTER: '#A11E27',
     CHALLENGER: '#D9C1C0'
 };
-
-export default TIER_EMBLEM_MAP;
-export default STATS_COLORS;
