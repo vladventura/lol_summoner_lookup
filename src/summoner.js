@@ -1,33 +1,23 @@
 import React from 'react';
+import NameIconDisplay from './components/name_icon_display';
 
-class Summoner extends React.Component{
-    render(){
-        return(
+class Summoner extends React.Component {
+    render() {
+        return (
             <section className='summoner'>
                 <div className='summoner__info'>
-                    <a
-                    rel='noopener noreferrer'
-                    href={`https://na.op.gg/summoner/userName=${this.props.summoner}`} 
-                    target='_blank'
-                    title={this.props.summoner}>
-                        <img 
-                        src={this.props.icon} 
-                        alt={`${this.props.tier} ${this.props.rank}`}
-                        />
-                    </a>
-                    <h2>
-                        <a
-                        rel='noopener noreferrer' 
-                        href={`https://na.op.gg/summoner/userName=${this.props.summoner}`}
-                        target='_blank'
-                        title={this.props.summoner}>
-                            {this.props.summoner}
-                        </a>
-                        </h2>
+                    <NameIconDisplay
+                        summoner={this.props.summoner}
+                        icon={this.props.icon}
+                    />
+                    <NameIconDisplay
+                        summoner={"Summoner"}
+                        icon={this.props.icon}
+                    />
                 </div>
-                <div 
-                className='summoner__stats'
-                style={{background: this.props.statsColor}}>
+                <div
+                    className='summoner__stats'
+                    style={{ background: this.props.statsColor }}>
                     <ul>
                         <li>
                             <i>{this.props.wins}</i><span>Wins</span>
@@ -40,10 +30,10 @@ class Summoner extends React.Component{
                         </li>
                         <li>
                             <img
-                            height={50}
-                            alt='' 
-                            src={this.props.tierEmblem}
-                            mode='fit'/>
+                                height={50}
+                                alt=''
+                                src={this.props.tierEmblem}
+                                mode='fit' />
                             <span>{`${this.props.tier} ${this.props.rank}`}</span>
                         </li>
                     </ul>

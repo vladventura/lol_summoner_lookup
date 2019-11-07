@@ -16,7 +16,7 @@ const LEAGUE_ID_ENDPOINT = `/lol/league/v4/entries/by-summoner/`;
 const PROXY = 'https://cors-anywhere.herokuapp.com/';
 
 
-class App extends React.Component{
+class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -41,10 +41,9 @@ class App extends React.Component{
         var url = `${API}${SUMMONER_NAME_ENDPOINT}${username}?api_key=${API_KEY}`;
         var response = await fetch(`${PROXY}${url}`);
 
-        if (response.ok){
+        if (response.ok) {
             var responseToJson = await response.json();
-
-            this.setState ({
+            this.setState({
                 summoner: responseToJson.name,
                 icon: `http://ddragon.leagueoflegends.com/cdn/9.21.1/img/profileicon/${responseToJson.profileIconId}.png`,
                 level: responseToJson.summonerLevel,
@@ -63,7 +62,7 @@ class App extends React.Component{
         var response = await fetch(PROXY + url);
         var responseToJson = await response.json();
         responseToJson.filter(gamemode => gamemode.queueType === "RANKED_SOLO_5x5")
-        .forEach(gamemode => {
+            .forEach(gamemode => {
                 this.setState({
                     tier: gamemode.tier,
                     rank: gamemode.rank,
@@ -73,7 +72,7 @@ class App extends React.Component{
                     statsColor: STATS_COLORS[gamemode.tier],
                 });
 
-        });
+            });
         this.setState({
             loaded: true,
         });
@@ -81,12 +80,12 @@ class App extends React.Component{
 
     validateForm = () => {
         var errors = [];
-        if (this.state.toSearch.length < 3){
+        if (this.state.toSearch.length < 3) {
             errors.push(
                 "The length of the Summoner Name is too short"
             );
         }
-        if (this.state.toSearch.length > 16){
+        if (this.state.toSearch.length > 16) {
             errors.push(
                 "The length of the Summoner Name is too long"
             );
@@ -97,7 +96,7 @@ class App extends React.Component{
     submitSearch = event => {
         event.preventDefault();
         var validation = this.validateForm();
-        if(Array.isArray(validation) && validation.length){
+        if (Array.isArray(validation) && validation.length) {
             alert(
                 validation
             );
@@ -119,39 +118,41 @@ class App extends React.Component{
         });
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div>
                 <section id='card'>
-                    <SearchBar 
+                    <SearchBar
                         onSubmit={this.submitSearch}
                         formValue={this.state.formValue}
-                        updateSearch={this.updateSearch}/>
-                <div>
-                    {this.state.loaded? (
-                        <Summoner 
-                        summoner={this.state.summoner}
-                        tier={this.state.tier}
-                        icon={this.state.icon}
-                        rank={this.state.rank}
-                        wins={this.state.wins}
-                        losses={this.state.losses}
-                        leaguePoints={this.state.leaguePoints}
-                        tierEmblem={TIER_EMBLEM_MAP[this.state.tier]}
-                        statsColor={this.state.statsColor}/>
-                    ):(
-                        <Summoner
-                        summoner="Fetching"
-                        tier="Fetching"
-                        icon={NO_ICON}
-                        rank="Fetching"
-                        wins={0}
-                        losses={0}
-                        leaguePoints={0}
-                        tierEmblem={TIER_EMBLEM_MAP['FETCHING']}
-                        />
-                    )}
-                </div>
+                        updateSearch={this.updateSearch}
+                    />
+                    <div>
+                        {this.state.loaded ? (
+                            <Summoner
+                                summoner={this.state.summoner}
+                                tier={this.state.tier}
+                                icon={this.state.icon}
+                                rank={this.state.rank}
+                                wins={this.state.wins}
+                                losses={this.state.losses}
+                                leaguePoints={this.state.leaguePoints}
+                                tierEmblem={TIER_EMBLEM_MAP[this.state.tier]}
+                                statsColor={this.state.statsColor}
+                            />
+                        ) : (
+                                <Summoner
+                                    summoner="Fetching"
+                                    tier="Fetching"
+                                    icon={NO_ICON}
+                                    rank="Fetching"
+                                    wins={0}
+                                    losses={0}
+                                    leaguePoints={0}
+                                    tierEmblem={TIER_EMBLEM_MAP['FETCHING']}
+                                />
+                            )}
+                    </div>
                 </section>
             </div>
         );
