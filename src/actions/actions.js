@@ -19,21 +19,18 @@ export function fetchSummoner(summoner){
 export function fetchLeague(summonerId){
     const requestUrl = `${API}${LEAGUE_ID_ENDPOINT}${summonerId}?api_key=${API_KEY}`;
     const leagueObject = {};
-    const request = axios.get(`${PROXY}${requestUrl}`)
-    .then(() => {
-        request.filter(gamemode => gamemode.queueType === 'RANKED_SOLO_5x5')
-        .forEach(gamemode => {
-            leagueObject = {
-                tier: gamemode.tier,
-                rank: gamemode.rank,
-                wins: gamemode.wins,
-                losses: gamemode.losses,
-                leaguePoints: gamemode.leaguePoints,
-            }
-        });
-    });
+    const request = axios.get(`${PROXY}${requestUrl}`);
     return {
         type: FETCH_LEAGUE,
-        payload: leagueObject
+        payload: request.filter(gamemode => gamemode.queueType === 'RANKED_SOLO_5x5')
+            .forEach(gamemode => {
+                return {
+                    tier: gamemode.tier,
+                    rank: gamemode.rank,
+                    wins: gamemode.wins,
+                    losses: gamemode.losses,
+                    leaguePoints: gamemode.leaguePoints
+                }
+            }),
     }
 }
