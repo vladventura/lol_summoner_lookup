@@ -1,4 +1,5 @@
 import React from 'react';
+import BottomStatsDisplay from './components/bottom_stats_display';
 import NameIconDisplay from './components/name_icon_display';
 
 class Summoner extends React.Component {
@@ -17,26 +18,16 @@ class Summoner extends React.Component {
                 </div>
                 <div
                     className='summoner__stats'
-                    style={{ background: this.props.statsColor }}>
-                    <ul>
-                        <li>
-                            <i>{this.props.wins}</i><span>Wins</span>
-                        </li>
-                        <li>
-                            <i>{this.props.losses}</i><span>Losses</span>
-                        </li>
-                        <li>
-                            <i>{this.props.leaguePoints}</i><span>LP</span>
-                        </li>
-                        <li>
-                            <img
-                                height={50}
-                                alt=''
-                                src={this.props.tierEmblem}
-                                mode='fit' />
-                            <span>{`${this.props.tier} ${this.props.rank}`}</span>
-                        </li>
-                    </ul>
+                    style={{ background: this.props.statsColor }}
+                >
+                    <BottomStatsDisplay 
+                        wins={this.props.wins}
+                        losses={this.props.losses}
+                        leaguePoints={this.props.leaguePoints}
+                        tierEmblem={this.props.tierEmblem}
+                        tier={this.props.tier}
+                        rank={this.props.rank}
+                    />
                 </div>
             </section>
         );
