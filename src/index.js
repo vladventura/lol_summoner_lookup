@@ -94,7 +94,6 @@ class App extends React.Component{
         responseToJson.filter(gamemode => gamemode.queueType === "RANKED_SOLO_5x5")
         .forEach(gamemode => {
             console.log(gamemode)
-
                 this.setState({
                     tier: gamemode.tier,
                     rank: gamemode.rank,
@@ -103,7 +102,6 @@ class App extends React.Component{
                     leaguePoints: gamemode.leaguePoints,
                     statsColor: STATS_COLORS[gamemode.tier],
                 });
-
         });
         this.setState({
             loaded: true,
