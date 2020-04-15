@@ -16,6 +16,7 @@ import CHALLENGER from './res/emblems/CHALLENGER.png';
 import FETCHING from './res/emblems/FETCHING.png';
 
 import NO_ICON from './res/icons/29.png';
+import SearchBar from './components/searchbar.js';
 
 const API_KEY = process.env.REACT_APP_LOL_API_KEY;
 const API = 'https://na1.api.riotgames.com';
@@ -72,14 +73,17 @@ class App extends React.Component{
     getSummoner = async (username) => {
         var url = `${API}${SUMMONER_NAME_ENDPOINT}${username}?api_key=${API_KEY}`;
         var response = await fetch(`${PROXY}${url}`);
+
         if (response.ok){
             var responseToJson = await response.json();
+
             this.setState ({
                 summoner: responseToJson.name,
                 icon: `http://ddragon.leagueoflegends.com/cdn/9.15.1/img/profileicon/${responseToJson.profileIconId}.png`,
                 level: responseToJson.summonerLevel,
                 id: responseToJson.id,
             });
+
         } else {
             alert("This Summoner does not exist");
         }
@@ -93,7 +97,10 @@ class App extends React.Component{
         var responseToJson = await response.json();
         responseToJson.filter(gamemode => gamemode.queueType === "RANKED_SOLO_5x5")
         .forEach(gamemode => {
+<<<<<<< HEAD
             console.log(gamemode)
+=======
+>>>>>>> d9958ae66f4f671a5d021e40d14cf47d9095ba3c
                 this.setState({
                     tier: gamemode.tier,
                     rank: gamemode.rank,
@@ -108,7 +115,7 @@ class App extends React.Component{
         });
     }
 
-    validateForm = () =>{
+    validateForm = () => {
         var errors = [];
         if (this.state.toSearch.length < 3){
             errors.push(
@@ -152,15 +159,10 @@ class App extends React.Component{
         return(
             <div>
                 <section id='card'>
-                    <div className='form-box'>
-                        <form onSubmit={this.submitSearch}>
-                            <label><input 
-                            type='text' 
-                            value={this.state.toSearch} 
-                            onChange={this.updateSearch}
-                            placeholder="Type the Summoner's name and then hit Enter!"/></label>
-                </form>
-                </div>
+                    <SearchBar 
+                        onSubmit={this.submitSearch}
+                        formValue={this.state.formValue}
+                        updateSearch={this.updateSearch}/>
                 <div>
                     {this.state.loaded? (
                         <Summoner 
