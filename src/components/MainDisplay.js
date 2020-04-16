@@ -1,33 +1,39 @@
 import React from 'react';
+
+import NO_ICON from "../res/icons/29.png";
+import { TIER_EMBLEM_MAP } from "../constants/assetmaps";
+
+
 import BottomStatsDisplay from './BottomStatsDisplay';
 import Summoner from './Summoner';
 import Champion from './Champion';
+import {connect} from 'react-redux';
 
 class MainDisplay extends React.Component {
     render() {
-        const {summoner, league, champ} = this.props;
+        const {summoner, league, champion} = this.props;
         return (
             <section className='summoner'>
                 <div className='summoner__info'>
                     <Summoner
-                        summoner={this.props.summoner}
-                        icon={this.props.icon}
+                        summoner={summoner? (summoner.name) : "Loading"}
+                        icon={summoner? (summoner.icon) : NO_ICON}
                     />
                     <Champion
-                        champ={this.props.champ}
+                        champ={champion}
                     />
                 </div>
                 <div
                     className='summoner__stats'
-                    style={{ background: this.props.statsColor }}
+                    style={{ background: league.statsColor }}
                 >
                     <BottomStatsDisplay 
-                        wins={this.props.wins}
-                        losses={this.props.losses}
-                        leaguePoints={this.props.leaguePoints}
-                        tierEmblem={this.props.tierEmblem}
-                        tier={this.props.tier}
-                        rank={this.props.rank}
+                        wins={league.wins}
+                        losses={league.losses}
+                        leaguePoints={league.leaguePoints}
+                        tierEmblem={TIER_EMBLEM_MAP[league.tier]}
+                        tier={league.tier}
+                        rank={league.rank}
                     />
                 </div>
             </section>
@@ -39,7 +45,8 @@ function mapStateToProps(state){
     return {
         summoner: state.summoner,
         league: state.league,
+        champion: state.champion,
     }
 }
 
-export default MainDisplay;
+export default connect(mapStateToProps)(MainDisplay);
