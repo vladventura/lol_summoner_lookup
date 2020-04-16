@@ -1,20 +1,20 @@
-import { FETCH_SUMMONER, FETCH_LEAGUE } from "./action_types";
+import {
+  FETCH_SUMMONER,
+  FETCH_LEAGUE,
+  FETCH_MASTERY,
+  FETCH_CHAMPION,
+} from "./action_types";
 import { STATS_COLORS } from "../constants/assetmaps";
 import axios from "axios";
 
-const API_KEY = process.env.REACT_APP_LOL_API_KEY;
-const API = "https://na1.api.riotgames.com";
-const SUMMONER_NAME_ENDPOINT = "/lol/summoner/v4/summoners/by-name/";
-const LEAGUE_ID_ENDPOINT = `/lol/league/v4/entries/by-summoner/`;
-const PROXY = "https://cors-anywhere.herokuapp.com/";
-
 export function fetchSummoner(summoner) {
   return (dispatch, getState) => {
-    var requestUrl = `${API}${SUMMONER_NAME_ENDPOINT}${summoner}?api_key=${API_KEY}`;
+    var requestUrl =
+      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchSummoner?summoner=" +
+      summoner;
     return axios
-      .get(`${PROXY}${requestUrl}`)
+      .get(requestUrl)
       .then((response) => {
-        console.log(response.data);
         var action = {
           type: FETCH_SUMMONER,
           payload: {
@@ -23,7 +23,7 @@ export function fetchSummoner(summoner) {
           },
         };
         dispatch(action);
-        dispatch(fetchLeague(response.data.id))
+        dispatch(fetchLeague(response.data.id));
       })
       .catch((error) => {
         console.log(error);
@@ -32,34 +32,55 @@ export function fetchSummoner(summoner) {
 }
 
 export function fetchLeague(summonerId) {
-  console.log("Summoner ID recieved", summonerId)
   return (dispatch, getState) => {
-    var requestUrl = `${API}${LEAGUE_ID_ENDPOINT}${summonerId}?api_key=${API_KEY}`;
+    var requestUrl =
+      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchLeague?summonerId=" +
+      summonerId;
     axios
-      .get(`${PROXY}${requestUrl}`)
+      .get(requestUrl)
       .then((response) => {
-        var data = {};
-        response.data
-          .filter((gameMode) => gameMode.queueType === "RANKED_SOLO_5x5")
-          .forEach((gameMode) => {
-            data = {
-              tier: gameMode.tier,
-              rank: gameMode.rank,
-              wins: gameMode.wins,
-              losses: gameMode.losses,
-              leaguePoints: gameMode.leaguePoints,
-              statsColor: STATS_COLORS[gameMode.tier],
-            };
-          });
-        console.log(data);
+        var data = {
+          ...response.data,
+          statsColor: STATS_COLORS[response.data.tier],
+        };
         var action = {
           type: FETCH_LEAGUE,
           payload: { ...data },
         };
         dispatch(action);
+        dispatch(fetchMastery(summonerId));
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+}
+
+export function fetchMastery(summonerId) {
+  return (dispatch, getState) => {
+    var requestUrl =
+      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchMastery?summonerId="+summonerId;
+    return axios.get(requestUrl).then((response) => {
+      var action = {
+        type: FETCH_MASTERY,
+        payload: response.data,
+      };
+      dispatch(action);
+      dispatch(fetchChampion(response.data.championId));
+    });
+  };
+}
+
+function fetchChampion(championId) {
+  return (dispatch, getState) => {
+    var requestUrl =
+      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchChampion?championId="+championId;
+    return axios.get(requestUrl).then((response) => {
+      var action = {
+        type: FETCH_CHAMPION,
+        payload: response.data,
+      };
+      dispatch(action);
+    });
   };
 }
