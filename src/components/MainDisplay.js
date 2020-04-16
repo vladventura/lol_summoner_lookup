@@ -5,6 +5,7 @@ import Champion from './Champion';
 
 class MainDisplay extends React.Component {
     render() {
+        const {summoner, league, champ} = this.props;
         return (
             <section className='summoner'>
                 <div className='summoner__info'>
@@ -31,6 +32,13 @@ class MainDisplay extends React.Component {
                 </div>
             </section>
         );
+    }
+}
+
+function mapStateToProps(state){
+    return {
+        summoner: state.summoner,
+        league: state.league,
     }
 }
 

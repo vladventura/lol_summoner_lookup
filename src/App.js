@@ -65,8 +65,8 @@ class App extends Component {
             {this.props.summoner && this.props.league ? (
               <MainDisplay
                 summoner={summoner.name}
-                tier={league.tier}
                 icon={summoner.icon}
+                tier={league.tier}
                 rank={league.rank}
                 wins={league.wins}
                 losses={league.losses}
