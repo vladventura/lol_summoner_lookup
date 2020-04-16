@@ -9,21 +9,21 @@ import { connect } from "react-redux";
 
 class MainDisplay extends React.Component {
   render() {
-    const { summoner, league, champion } = this.props;
+    const { summoner, league, champion, loaded } = this.props;
     return (
       <section className="summoner">
         <div className="summoner__info">
           <Summoner
-            summoner={summoner ? summoner.name : "Loading"}
-            icon={summoner ? summoner.icon : NO_ICON}
+            summoner={loaded ? summoner.name : "Loading"}
+            icon={loaded ? summoner.icon : NO_ICON}
           />
-          <Champion champ={champion} />
+          <Champion champ={champion} loaded={loaded} />
         </div>
         <div
           className="summoner__stats"
-          style={league ? { background: league.statsColor } : {}}
+          style={loaded ? { background: league.statsColor } : {}}
         >
-          <BottomStatsDisplay league={league} />
+          <BottomStatsDisplay league={league} loaded={loaded} />
         </div>
       </section>
     );
@@ -35,6 +35,7 @@ function mapStateToProps(state) {
     summoner: state.summoner,
     league: state.league,
     champion: state.champion,
+    loaded: state.loaded,
   };
 }
 
