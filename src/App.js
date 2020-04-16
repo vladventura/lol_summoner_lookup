@@ -1,4 +1,4 @@
-import { fetchSummoner, fetchLeague } from "./actions/actions";
+import { searchSubmitted, fetchSummoner, fetchLeague } from "./actions/actions";
 import { connect } from "react-redux";
 
 import MainDisplay from "./components/MainDisplay.js";
@@ -10,10 +10,9 @@ import { TIER_EMBLEM_MAP } from "./constants/assetmaps";
 import React, { Component } from "react";
 
 class App extends Component {
-
   state = {
-    toSearch: ""
-  }
+    toSearch: "",
+  };
 
   componentWillMount() {
     this.props.fetchSummoner("Sleepy Bullets");
@@ -53,7 +52,7 @@ class App extends Component {
   };
 
   render() {
-    const {summoner, league, champion} = this.props;
+    const { summoner, league, champion } = this.props;
     return (
       <div>
         <section id="card">
@@ -100,12 +99,13 @@ function mapStateToProps(state) {
     summoner: state.summoner,
     league: state.league,
     champion: state.champion,
-    mastery: state.mastery
+    mastery: state.mastery,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+    searchSubmitted: () => dispatch(searchSubmitted()),
     fetchSummoner: (summoner) => {
       dispatch(fetchSummoner(summoner));
     },
