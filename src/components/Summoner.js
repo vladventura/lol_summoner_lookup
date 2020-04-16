@@ -5,22 +5,22 @@ const Summoner = ({summoner, icon, loaded}) => {
         <div>
             <a
                 rel="noopener noreferrer"
-                href={loaded? (`https://na.op.gg/summoner/userName=${summoner}`) : ("#")}
+                href={summoner? (`https://na.op.gg/summoner/userName=${summoner}`) : ("#")}
                 target="_blank"
             >
                 <img 
                     src={icon}
-                    alt={loaded? (summoner) : "Loading"}
+                    alt={summoner? (summoner) : "Loading"}
                 />
             </a>
             <h2>
             <a
                 rel="noopener noreferrer"
-                href={loaded? (`https://na.op.gg/summoner/userName=${summoner}`) : ("#")}
+                href={summoner? (`https://na.op.gg/summoner/userName=${summoner}`) : ("#")}
                 target="_blank"
-                title={loaded? (summoner) : ("Loading")}
+                title={summoner? (summoner) : ("Loading")}
             >
-                {loaded? (summoner) : ("Loading")}
+                {summoner? (summoner) : ("Loading")}
             </a>
             </h2>
         </div>
