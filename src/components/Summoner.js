@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Summoner = ({summoner, icon, loaded}) => {
+const Summoner = ({summoner, icon}) => {
     return(
         <div>
             <a
