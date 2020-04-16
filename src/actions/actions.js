@@ -85,3 +85,11 @@ function fetchChampion(championId) {
     });
   };
 }
+
+export function searchSubmitted(){
+  return (dispatch, getState) => {
+    dispatch({
+      type: SEARCH_SUBMITTED,
+    });
+  }
+}
