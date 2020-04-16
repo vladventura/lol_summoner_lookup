@@ -1,4 +1,4 @@
-import { searchSubmitted, fetchSummoner, fetchLeague } from "./actions/actions";
+import { searchSubmitted, fetchSummoner } from "./actions/actions";
 import { connect } from "react-redux";
 
 import MainDisplay from "./components/MainDisplay.js";
@@ -36,6 +36,7 @@ class App extends Component {
         summoner: this.state.toSearch,
       });
       this.props.fetchSummoner(this.state.toSearch);
+      this.props.searchSubmitted();
     }
     this.setState({
       toSearch: "",
@@ -68,12 +69,11 @@ class App extends Component {
 
 function mapDispatchToProps(dispatch) {
   return {
-    searchSubmitted: () => dispatch(searchSubmitted()),
+    searchSubmitted: () => {
+      dispatch(searchSubmitted());
+    },
     fetchSummoner: (summoner) => {
       dispatch(fetchSummoner(summoner));
-    },
-    fetchLeague: (league) => {
-      dispatch(fetchLeague(league));
     },
   };
 }
