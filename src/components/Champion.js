@@ -12,7 +12,7 @@ const Champion = ({ champ, loaded }) => {
         <img
           src={
             loaded
-              ? `http://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${champ.id}.png`
+              ? `https://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${champ.id}.png`
               : NO_ICON
           }
           alt="Champion Icon"

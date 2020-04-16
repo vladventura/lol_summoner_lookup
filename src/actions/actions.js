@@ -21,7 +21,7 @@ export function fetchSummoner(summoner) {
           type: FETCH_SUMMONER,
           payload: {
             ...response.data,
-            icon: `http://ddragon.leagueoflegends.com/cdn/9.21.1/img/profileicon/${response.data.profileIconId}.png`,
+            icon: `https://ddragon.leagueoflegends.com/cdn/10.8.1/img/profileicon/${response.data.profileIconId}.png`,
           },
         };
         dispatch(action);
