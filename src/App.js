@@ -1,19 +1,15 @@
-import { fetchSummoner, fetchLeague } from "./actions/actions";
+import { searchSubmitted, fetchSummoner } from "./actions/actions";
 import { connect } from "react-redux";
 
 import MainDisplay from "./components/MainDisplay.js";
 import SearchBar from "./components/SearchBar.js";
 
-import NO_ICON from "./res/icons/29.png";
-import { TIER_EMBLEM_MAP } from "./constants/assetmaps";
-
 import React, { Component } from "react";
 
 class App extends Component {
-
   state = {
-    toSearch: ""
-  }
+    toSearch: "",
+  };
 
   componentWillMount() {
     this.props.fetchSummoner("Sleepy Bullets");
@@ -40,6 +36,7 @@ class App extends Component {
         summoner: this.state.toSearch,
       });
       this.props.fetchSummoner(this.state.toSearch);
+      this.props.searchSubmitted();
     }
     this.setState({
       toSearch: "",
@@ -53,7 +50,6 @@ class App extends Component {
   };
 
   render() {
-    const {summoner, league, champion} = this.props;
     return (
       <div>
         <section id="card">
@@ -63,31 +59,7 @@ class App extends Component {
             updateSearch={this.updateSearch}
           />
           <div>
-            {this.props.summoner && this.props.league ? (
-              <MainDisplay
-                summoner={summoner.name}
-                tier={league.tier}
-                icon={summoner.icon}
-                rank={league.rank}
-                wins={league.wins}
-                losses={league.losses}
-                leaguePoints={league.leaguePoints}
-                tierEmblem={TIER_EMBLEM_MAP[league.tier]}
-                statsColor={league.statsColor}
-                champ={champion}
-              />
-            ) : (
-              <MainDisplay
-                summoner="Loading"
-                tier="Loading"
-                icon={NO_ICON}
-                rank="Loading"
-                wins={0}
-                losses={0}
-                leaguePoints={0}
-                tierEmblem={TIER_EMBLEM_MAP["FETCHING"]}
-              />
-            )}
+            <MainDisplay />
           </div>
         </section>
       </div>
@@ -95,24 +67,15 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    summoner: state.summoner,
-    league: state.league,
-    champion: state.champion,
-    mastery: state.mastery
-  };
-}
-
 function mapDispatchToProps(dispatch) {
   return {
+    searchSubmitted: () => {
+      dispatch(searchSubmitted());
+    },
     fetchSummoner: (summoner) => {
       dispatch(fetchSummoner(summoner));
     },
-    fetchLeague: (league) => {
-      dispatch(fetchLeague(league));
-    },
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);

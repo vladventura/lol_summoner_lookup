@@ -3,6 +3,8 @@ import {
   FETCH_LEAGUE,
   FETCH_MASTERY,
   FETCH_CHAMPION,
+  SEARCH_SUBMITTED,
+  SEARCH_COMPLETE,
 } from "./action_types";
 import { STATS_COLORS } from "../constants/assetmaps";
 import axios from "axios";
@@ -31,7 +33,7 @@ export function fetchSummoner(summoner) {
   };
 }
 
-export function fetchLeague(summonerId) {
+function fetchLeague(summonerId) {
   return (dispatch, getState) => {
     var requestUrl =
       "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchLeague?summonerId=" +
@@ -56,10 +58,11 @@ export function fetchLeague(summonerId) {
   };
 }
 
-export function fetchMastery(summonerId) {
+function fetchMastery(summonerId) {
   return (dispatch, getState) => {
     var requestUrl =
-      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchMastery?summonerId="+summonerId;
+      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchMastery?summonerId=" +
+      summonerId;
     return axios.get(requestUrl).then((response) => {
       var action = {
         type: FETCH_MASTERY,
@@ -74,13 +77,25 @@ export function fetchMastery(summonerId) {
 function fetchChampion(championId) {
   return (dispatch, getState) => {
     var requestUrl =
-      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchChampion?championId="+championId;
+      "https://us-central1-lol-summoner-lookup.cloudfunctions.net/fetchChampion?championId=" +
+      championId;
     return axios.get(requestUrl).then((response) => {
       var action = {
         type: FETCH_CHAMPION,
         payload: response.data,
       };
       dispatch(action);
+      dispatch({
+        type: SEARCH_COMPLETE,
+      });
+    });
+  };
+}
+
+export function searchSubmitted() {
+  return (dispatch, getState) => {
+    dispatch({
+      type: SEARCH_SUBMITTED,
     });
   };
 }

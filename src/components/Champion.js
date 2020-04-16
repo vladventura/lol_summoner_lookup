@@ -1,20 +1,18 @@
 import React from "react";
 import NO_ICON from "../res/icons/29.png";
 
-const Champion = (props) => {
+const Champion = ({ champ, loaded }) => {
   return (
     <div>
       <a
-        href={
-          props.champ ? `https://champion.gg/champion/${props.champ.name}` : "#"
-        }
+        href={loaded ? `https://na.op.gg/champion/${champ.id}` : "#"}
         rel="noopener noreferrer"
         target="_blank"
       >
         <img
           src={
-            props.champ
-              ? `http://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${props.champ.id}.png`
+            loaded
+              ? `http://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${champ.id}.png`
               : NO_ICON
           }
           alt="Champion Icon"
@@ -24,14 +22,12 @@ const Champion = (props) => {
         <a
           rel="noopener noreferrer"
           href={
-            props.champ
-              ? `https://champion.gg/champion/${props.champ.name}`
-              : "#"
+            loaded ? `https://na.op.gg/champion/${champ.id}` : "#"
           }
           target="_blank"
-          title={props.champ ? props.champ.name : "Loading"}
+          title={loaded ? champ.name : "Loading"}
         >
-          {props.champ ? `Highest Mastery: ${props.champ.name}` : "Loading"}
+          {loaded ? `Highest Mastery: ${champ.name}` : "Loading"}
         </a>
       </h2>
     </div>
