@@ -1,8 +1,8 @@
 import { fetchSummoner, fetchLeague } from "./actions/actions";
 import { connect } from "react-redux";
 
-import Summoner from "./summoner.js";
-import SearchBar from "./components/searchbar.js";
+import MainDisplay from "./components/MainDisplay.js";
+import SearchBar from "./components/SearchBar.js";
 
 import NO_ICON from "./res/icons/29.png";
 import { TIER_EMBLEM_MAP } from "./constants/assetmaps";
@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   componentWillMount() {
-    console.log("Mounted");
     this.props.fetchSummoner("Sleepy Bullets");
   }
 
@@ -54,7 +53,7 @@ class App extends Component {
   };
 
   render() {
-    const {summoner, league} = this.props;
+    const {summoner, league, champion} = this.props;
     return (
       <div>
         <section id="card">
@@ -65,7 +64,7 @@ class App extends Component {
           />
           <div>
             {this.props.summoner && this.props.league ? (
-              <Summoner
+              <MainDisplay
                 summoner={summoner.name}
                 tier={league.tier}
                 icon={summoner.icon}
@@ -75,9 +74,10 @@ class App extends Component {
                 leaguePoints={league.leaguePoints}
                 tierEmblem={TIER_EMBLEM_MAP[league.tier]}
                 statsColor={league.statsColor}
+                champ={champion}
               />
             ) : (
-              <Summoner
+              <MainDisplay
                 summoner="Loading"
                 tier="Loading"
                 icon={NO_ICON}
@@ -99,6 +99,8 @@ function mapStateToProps(state) {
   return {
     summoner: state.summoner,
     league: state.league,
+    champion: state.champion,
+    mastery: state.mastery
   };
 }
 
