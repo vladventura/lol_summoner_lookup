@@ -1,8 +1,10 @@
-import { FETCH_SUMMONER, FETCH_LEAGUE } from '../actions/action_types';
+import { FETCH_SUMMONER, FETCH_LEAGUE, FETCH_MASTERY, FETCH_CHAMPION } from '../actions/action_types';
 
 var initState = {
     summoner: null,
     league: null,
+    mastery: null,
+    champion: null,
 };
 
 export function rootReducer(state = initState, action){
@@ -15,6 +17,14 @@ export function rootReducer(state = initState, action){
             ...state,
             league: action.payload,
         };
+        case FETCH_MASTERY: return {
+            ...state,
+            mastery: action.payload
+        };
+        case FETCH_CHAMPION: return {
+            ...state,
+            champion: action.payload
+        }
         default: return state;
     };
 }
