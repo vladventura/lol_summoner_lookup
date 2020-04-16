@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NameIconDisplay = ({summoner, icon}) => {
+const Summoner = ({summoner, icon}) => {
     return(
         <div>
             <a
@@ -27,4 +27,4 @@ const NameIconDisplay = ({summoner, icon}) => {
     );
 }
 
-export default NameIconDisplay;
+export default Summoner;
