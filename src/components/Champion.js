@@ -22,7 +22,7 @@ const Champion = ({ champ }) => {
         <a
           rel="noopener noreferrer"
           href={
-            champ ? `https://champion.gg/champion/${props.champ.name}` : "#"
+            champ ? `https://champion.gg/champion/${champ.name}` : "#"
           }
           target="_blank"
           title={champ ? champ.name : "Loading"}
