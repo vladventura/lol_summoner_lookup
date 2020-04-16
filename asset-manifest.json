@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/lol_summoner_lookup/static/css/main.27260618.chunk.css",
-    "main.js": "/lol_summoner_lookup/static/js/main.b2c067c2.chunk.js",
-    "main.js.map": "/lol_summoner_lookup/static/js/main.b2c067c2.chunk.js.map",
+    "main.js": "/lol_summoner_lookup/static/js/main.bebc6103.chunk.js",
+    "main.js.map": "/lol_summoner_lookup/static/js/main.bebc6103.chunk.js.map",
     "runtime-main.js": "/lol_summoner_lookup/static/js/runtime-main.04922a62.js",
     "runtime-main.js.map": "/lol_summoner_lookup/static/js/runtime-main.04922a62.js.map",
-    "static/js/2.e5369a2e.chunk.js": "/lol_summoner_lookup/static/js/2.e5369a2e.chunk.js",
-    "static/js/2.e5369a2e.chunk.js.map": "/lol_summoner_lookup/static/js/2.e5369a2e.chunk.js.map",
+    "static/js/2.021da8dd.chunk.js": "/lol_summoner_lookup/static/js/2.021da8dd.chunk.js",
+    "static/js/2.021da8dd.chunk.js.map": "/lol_summoner_lookup/static/js/2.021da8dd.chunk.js.map",
     "index.html": "/lol_summoner_lookup/index.html",
-    "precache-manifest.b0dff257c73c4ae4b4c00ffe99b7f99a.js": "/lol_summoner_lookup/precache-manifest.b0dff257c73c4ae4b4c00ffe99b7f99a.js",
+    "precache-manifest.61c0c2aad65688f15d042af054f0853c.js": "/lol_summoner_lookup/precache-manifest.61c0c2aad65688f15d042af054f0853c.js",
     "service-worker.js": "/lol_summoner_lookup/service-worker.js",
     "static/css/main.27260618.chunk.css.map": "/lol_summoner_lookup/static/css/main.27260618.chunk.css.map",
-    "static/js/2.e5369a2e.chunk.js.LICENSE.txt": "/lol_summoner_lookup/static/js/2.e5369a2e.chunk.js.LICENSE.txt",
+    "static/js/2.021da8dd.chunk.js.LICENSE.txt": "/lol_summoner_lookup/static/js/2.021da8dd.chunk.js.LICENSE.txt",
     "static/media/29.png": "/lol_summoner_lookup/static/media/29.94b84a7d.png",
     "static/media/BRONZE.png": "/lol_summoner_lookup/static/media/BRONZE.39964f7f.png",
     "static/media/CHALLENGER.png": "/lol_summoner_lookup/static/media/CHALLENGER.4aaf9754.png",
@@ -26,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.04922a62.js",
-    "static/js/2.e5369a2e.chunk.js",
+    "static/js/2.021da8dd.chunk.js",
     "static/css/main.27260618.chunk.css",
-    "static/js/main.b2c067c2.chunk.js"
+    "static/js/main.bebc6103.chunk.js"
   ]
 }
