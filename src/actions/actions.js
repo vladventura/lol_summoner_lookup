@@ -3,6 +3,7 @@ import {
   FETCH_LEAGUE,
   FETCH_MASTERY,
   FETCH_CHAMPION,
+  SEARCH_SUBMITTED
 } from "./action_types";
 import { STATS_COLORS } from "../constants/assetmaps";
 import axios from "axios";
