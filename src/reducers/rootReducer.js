@@ -1,4 +1,4 @@
-import { FETCH_SUMMONER, FETCH_LEAGUE, FETCH_MASTERY, FETCH_CHAMPION } from '../actions/action_types';
+import { FETCH_SUMMONER, FETCH_LEAGUE, FETCH_MASTERY, FETCH_CHAMPION, SEARCH_SUBMITTED } from '../actions/action_types';
 
 var initState = {
     summoner: null,
@@ -25,6 +25,7 @@ export function rootReducer(state = initState, action){
             ...state,
             champion: action.payload
         }
+        case SEARCH_SUBMITTED: return initState;
         default: return state;
     };
 }
