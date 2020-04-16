@@ -1,11 +1,11 @@
 import React from "react";
 import { TIER_EMBLEM_MAP } from "../constants/assetmaps";
 
-const BottomStatsDisplay = ({ league }) => {
+const BottomStatsDisplay = ({ league, loaded }) => {
   return (
     <div>
       <ul>
-        {league && league.leaguePoints ? (
+        {loaded && league.leaguePoints ? (
           <div>
             <li>
               <i>{league.wins}</i>
@@ -31,7 +31,12 @@ const BottomStatsDisplay = ({ league }) => {
           </div>
         ) : (
           <li>
-            <span>No data on Ranked 5v5 for this Summoner</span>
+            <span>{
+              loaded && !league.leaguePoints?
+            ("No data on Ranked 5v5 for this Summoner")
+            :
+            ("Loading")
+          }</span>
           </li>
         )}
       </ul>
