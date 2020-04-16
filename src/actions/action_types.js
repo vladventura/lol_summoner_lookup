@@ -1,0 +1,4 @@
+export const FETCH_SUMMONER = 'FETCH_SUMMONER';
+export const FETCH_LEAGUE = 'FETCH_LEAGUE';
+export const FETCH_MASTERY = 'FETCH_MASTERY';
+export const FETCH_CHAMPION = 'FETCH_CHAMPION';
