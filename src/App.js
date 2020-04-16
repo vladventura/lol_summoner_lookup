@@ -4,9 +4,6 @@ import { connect } from "react-redux";
 import MainDisplay from "./components/MainDisplay.js";
 import SearchBar from "./components/SearchBar.js";
 
-import NO_ICON from "./res/icons/29.png";
-import { TIER_EMBLEM_MAP } from "./constants/assetmaps";
-
 import React, { Component } from "react";
 
 class App extends Component {
@@ -52,7 +49,6 @@ class App extends Component {
   };
 
   render() {
-    const { summoner, league, champion } = this.props;
     return (
       <div>
         <section id="card">
@@ -62,45 +58,12 @@ class App extends Component {
             updateSearch={this.updateSearch}
           />
           <div>
-            {this.props.summoner && this.props.league ? (
-              <MainDisplay
-                summoner={summoner.name}
-                icon={summoner.icon}
-                tier={league.tier}
-                rank={league.rank}
-                wins={league.wins}
-                losses={league.losses}
-                leaguePoints={league.leaguePoints}
-                tierEmblem={TIER_EMBLEM_MAP[league.tier]}
-                statsColor={league.statsColor}
-                champ={champion}
-              />
-            ) : (
-              <MainDisplay
-                summoner="Loading"
-                tier="Loading"
-                icon={NO_ICON}
-                rank="Loading"
-                wins={0}
-                losses={0}
-                leaguePoints={0}
-                tierEmblem={TIER_EMBLEM_MAP["FETCHING"]}
-              />
-            )}
+            <MainDisplay />
           </div>
         </section>
       </div>
     );
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    summoner: state.summoner,
-    league: state.league,
-    champion: state.champion,
-    mastery: state.mastery,
-  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -115,4 +78,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(null, mapDispatchToProps)(App);
