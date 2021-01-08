@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/lol_summoner_lookup/static/css/main.27260618.chunk.css",
-    "main.js": "/lol_summoner_lookup/static/js/main.43466235.chunk.js",
-    "main.js.map": "/lol_summoner_lookup/static/js/main.43466235.chunk.js.map",
+    "main.css": "/lol_summoner_lookup/static/css/main.f6960293.chunk.css",
+    "main.js": "/lol_summoner_lookup/static/js/main.15dbe393.chunk.js",
+    "main.js.map": "/lol_summoner_lookup/static/js/main.15dbe393.chunk.js.map",
     "runtime-main.js": "/lol_summoner_lookup/static/js/runtime-main.04922a62.js",
     "runtime-main.js.map": "/lol_summoner_lookup/static/js/runtime-main.04922a62.js.map",
-    "static/js/2.021da8dd.chunk.js": "/lol_summoner_lookup/static/js/2.021da8dd.chunk.js",
-    "static/js/2.021da8dd.chunk.js.map": "/lol_summoner_lookup/static/js/2.021da8dd.chunk.js.map",
+    "static/js/2.12414afe.chunk.js": "/lol_summoner_lookup/static/js/2.12414afe.chunk.js",
+    "static/js/2.12414afe.chunk.js.map": "/lol_summoner_lookup/static/js/2.12414afe.chunk.js.map",
     "index.html": "/lol_summoner_lookup/index.html",
-    "precache-manifest.c1b003c3fbebd62d4e567d633157be6a.js": "/lol_summoner_lookup/precache-manifest.c1b003c3fbebd62d4e567d633157be6a.js",
+    "precache-manifest.4b3d5193dc6ae73414ae838e15037ea0.js": "/lol_summoner_lookup/precache-manifest.4b3d5193dc6ae73414ae838e15037ea0.js",
     "service-worker.js": "/lol_summoner_lookup/service-worker.js",
-    "static/css/main.27260618.chunk.css.map": "/lol_summoner_lookup/static/css/main.27260618.chunk.css.map",
-    "static/js/2.021da8dd.chunk.js.LICENSE.txt": "/lol_summoner_lookup/static/js/2.021da8dd.chunk.js.LICENSE.txt",
+    "static/css/main.f6960293.chunk.css.map": "/lol_summoner_lookup/static/css/main.f6960293.chunk.css.map",
+    "static/js/2.12414afe.chunk.js.LICENSE.txt": "/lol_summoner_lookup/static/js/2.12414afe.chunk.js.LICENSE.txt",
     "static/media/29.png": "/lol_summoner_lookup/static/media/29.94b84a7d.png",
     "static/media/BRONZE.png": "/lol_summoner_lookup/static/media/BRONZE.39964f7f.png",
     "static/media/CHALLENGER.png": "/lol_summoner_lookup/static/media/CHALLENGER.4aaf9754.png",
@@ -26,8 +26,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.04922a62.js",
-    "static/js/2.021da8dd.chunk.js",
-    "static/css/main.27260618.chunk.css",
-    "static/js/main.43466235.chunk.js"
+    "static/js/2.12414afe.chunk.js",
+    "static/css/main.f6960293.chunk.css",
+    "static/js/main.15dbe393.chunk.js"
   ]
 }
