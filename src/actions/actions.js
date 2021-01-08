@@ -21,7 +21,7 @@ export function fetchSummoner(summoner) {
           type: FETCH_SUMMONER,
           payload: {
             ...response.data,
-            icon: `https://ddragon.leagueoflegends.com/cdn/10.8.1/img/profileicon/${response.data.profileIconId}.png`,
+            icon: `https://ddragon.leagueoflegends.com/cdn/${response.data.ver}/img/profileicon/${response.data.profileIconId}.png`,
           },
         };
         dispatch(action);
@@ -41,6 +41,7 @@ function fetchLeague(summonerId) {
     axios
       .get(requestUrl)
       .then((response) => {
+        console.log("Response on fetchLeague action", response.data)
         var data = {
           ...response.data,
           statsColor: STATS_COLORS[response.data.tier],

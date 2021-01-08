@@ -8,27 +8,30 @@ const MASTERY_ENDPOINT =
   "/lol/champion-mastery/v4/champion-masteries/by-summoner/";
 const apiKey = functions.config().riotgames.key;
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-});
-
-exports.fetchSummoner = functions.https.onRequest((request, response) => {
+exports.fetchSummoner = functions.https.onRequest(async (request, response) => {
   response.set("Access-Control-Allow-Origin", "*");
-  var requestUrl = `${API}${SUMMONER_NAME_ENDPOINT}${request.query.summoner}?api_key=${apiKey}`;
+  const getVersion = async () => {
+    return axios.get('https://ddragon.leagueoflegends.com/api/versions.json').then(data => 
+     data.data[0]
+    );
+  };
+
+  let ver = await getVersion();
+
+  let requestUrl = `${API}${SUMMONER_NAME_ENDPOINT}${request.query.summoner}?api_key=${apiKey}`;
   return axios.get(requestUrl).then((resp) => {
-    return response.status(200).json(resp.data);
+    return response.status(200).json({...resp.data, ver});
   });
 });
 
 exports.fetchLeague = functions.https.onRequest((request, response) => {
   response.set("Access-Control-Allow-Origin", "*");
-  var requestUrl = `${API}${LEAGUE_ID_ENDPOINT}${request.query.summonerId}?api_key=${apiKey}`;
+  let requestUrl = `${API}${LEAGUE_ID_ENDPOINT}${request.query.summonerId}?api_key=${apiKey}`;
   return axios.get(requestUrl).then((resp) => {
-    var data = {};
+    let data = {};
+    console.log(requestUrl);
+    console.log(request.query.summonerId);
+    console.log(resp.data);
     resp.data
       .filter((gameMode) => gameMode.queueType === "RANKED_SOLO_5x5")
       .forEach((gameMode) => {
@@ -46,10 +49,10 @@ exports.fetchLeague = functions.https.onRequest((request, response) => {
 
 exports.fetchMastery = functions.https.onRequest((request, response) => {
   response.set("Access-Control-Allow-Origin", "*");
-  var requestUrl = `${API}${MASTERY_ENDPOINT}${request.query.summonerId}?api_key=${apiKey}`;
+  let requestUrl = `${API}${MASTERY_ENDPOINT}${request.query.summonerId}?api_key=${apiKey}`;
   return axios.get(requestUrl).then((resp) => {
-    var firstElement = resp.data[0];
-    var data = {
+    let firstElement = resp.data[0];
+    let data = {
       championId: firstElement.championId,
       championLevel: firstElement.championLevel,
       championPoints: firstElement.championPoints,
@@ -58,18 +61,20 @@ exports.fetchMastery = functions.https.onRequest((request, response) => {
   });
 });
 
-const getVersion = async () => {
-  return fetch('https://ddragon.leagueoflegends.com/api/versions.json').then(r => r.json()).then(data => data[0])
-};
 
 exports.fetchChampion = functions.https.onRequest(async (request, response) => {
+  const getVersion = async () => {
+    return axios.get('https://ddragon.leagueoflegends.com/api/versions.json').then(data => 
+     data.data[0]
+    );
+  };
   let ver = await getVersion();
   response.set("Access-Control-Allow-Origin", "*");
-  var requestUrl =
+  let requestUrl =
     `http://ddragon.leagueoflegends.com/cdn/${ver}/data/de_DE/champion.json`;
   return axios.get(requestUrl).then((resp) => {
-    var data = {};
-    var entries = Object.entries(resp.data.data);
+    let data = {};
+    let entries = Object.entries(resp.data.data);
     entries.forEach((entry) => {
       if (parseInt(entry[1].key) === parseInt(request.query.championId)) {
         data = {

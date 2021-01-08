@@ -2,6 +2,8 @@ import React from "react";
 import { TIER_EMBLEM_MAP } from "../constants/assetmaps";
 
 const BottomStatsDisplay = ({ league, loaded }) => {
+  console.log("League (in BottomStatsDisplay component)", league)
+  console.log(loaded)
   return (
     <div>
       <ul>

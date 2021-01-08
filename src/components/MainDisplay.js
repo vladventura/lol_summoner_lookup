@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 class MainDisplay extends React.Component {
   render() {
     const { summoner, league, champion, loaded } = this.props;
+    console.log(champion)
     return (
       <section className="summoner">
         <div className="summoner__info">

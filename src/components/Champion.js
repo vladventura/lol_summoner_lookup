@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {getVersion} from "../utilities";
 import NO_ICON from "../res/icons/29.png";
 
 const Champion = ({ champ, loaded }) => {
+  const [version, setVersion] = useState('');
+  
+  useEffect(()=>{
+      getVersion().then(v => {
+        setVersion(v);
+      })
+  }, [])
+
+
+
   return (
     <div>
       <a
@@ -11,8 +22,8 @@ const Champion = ({ champ, loaded }) => {
       >
         <img
           src={
-            loaded
-              ? `https://ddragon.leagueoflegends.com/cdn/10.8.1/img/champion/${champ.id}.png`
+            loaded && version
+              ? `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champ.id}.png`
               : NO_ICON
           }
           alt="Champion Icon"
@@ -27,7 +38,7 @@ const Champion = ({ champ, loaded }) => {
           target="_blank"
           title={loaded ? champ.name : "Loading"}
         >
-          {loaded ? `Highest Mastery: ${champ.name}` : "Loading"}
+          {loaded ? champ.name : "Loading"}
         </a>
       </h2>
     </div>
