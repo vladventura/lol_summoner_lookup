@@ -58,10 +58,15 @@ exports.fetchMastery = functions.https.onRequest((request, response) => {
   });
 });
 
-exports.fetchChampion = functions.https.onRequest((request, response) => {
+const getVersion = async () => {
+  return fetch('https://ddragon.leagueoflegends.com/api/versions.json').then(r => r.json()).then(data => data[0])
+};
+
+exports.fetchChampion = functions.https.onRequest(async (request, response) => {
+  let ver = await getVersion();
   response.set("Access-Control-Allow-Origin", "*");
   var requestUrl =
-    "http://ddragon.leagueoflegends.com/cdn/10.8.1/data/de_DE/champion.json";
+    `http://ddragon.leagueoflegends.com/cdn/${ver}/data/de_DE/champion.json`;
   return axios.get(requestUrl).then((resp) => {
     var data = {};
     var entries = Object.entries(resp.data.data);
